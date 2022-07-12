@@ -1,3 +1,4 @@
+const results = require('./data/swapi');
 const characters = require('./data/swapi');
 // DO NOT CHANGE THE LINE ABOVE
 
@@ -34,8 +35,20 @@ const characters = require('./data/swapi');
  *
  */
 
-function listAllCharacters() {}
-
+function listAllCharacters(characters) {
+  let newArr = []
+  if (characters.length === 0){
+    return "0"
+  } 
+  for ( let i = 0; i< characters.length; i++){
+    // newArr.push(characters[i].name)
+    newArr[i] = characters[i].name
+  }
+  // for (let character of characters){
+  //   newArr.push(character.name)
+  // }
+  return newArr
+  }
 //UNCOMMENT THE LINES BELOW TO TEST YOUR SOLUTION
 // console.log(listAllCharacters([]));
 // console.log(listAllCharacters(characters));
@@ -51,10 +64,17 @@ function listAllCharacters() {}
  * No example for this one. You should be able to find the average at this point
  */
 
-function averageHeightOfAllCharacters() {}
+function averageHeightOfAllCharacters(characters) {
+  let average = 0;
+  for (let i = 0; i < characters.length; i++) {
+    average += characters[i].height /(characters.length);
+  }
+
+   return average
+}
 
 //UNCOMMENT THE LINE BELOW TO TEST YOUR SOLUTION
-//console.log(averageHeightOfAllCharacters(characters))
+// console.log(averageHeightOfAllCharacters(characters))
 
 /**
  * countByEyeColor()
@@ -76,7 +96,21 @@ function averageHeightOfAllCharacters() {}
  *
  */
 
-function countByEyeColor() {}
+function countByEyeColor(characters) {
+  let newObj = {}
+  if (characters.length === 0){
+    return `Nothing to check.`
+  }
+  for (let i =0; i < characters.length; i++){
+    // newObj = characters[i]
+    if (!newObj[characters[i].eye_color]){
+      newObj[characters[i].eye_color] = 1
+    }else {
+      newObj[characters[i].eye_color] += 1
+    }
+  }
+  return newObj
+}
 
 //UNCOMMENT THE LINES BELOW TO TEST YOUR SOLUTION
 // console.log(countByEyeColor([]))
@@ -106,7 +140,18 @@ function countByEyeColor() {}
  *
  */
 
-function getAllCharactersCreatedAfterYear() {}
+function getAllCharactersCreatedAfterYear(characters, date) {
+  let arr = []
+  for (let i = 0; i < characters.length; i++) {
+    let dateAfter = characters[i].created.slice(0,4)
+    console.log(dateAfter)
+    // let created = characters[i][created]
+    if(dateAfter >= date){
+       arr.push(characters[i].name)
+    }
+  }
+  return arr;
+}
 
 //UNCOMMENT THE LINE BELOW TO TEST YOUR SOLUTION
 // console.log(getAllCharactersCreatedAfterYear(characters, 2014));
@@ -138,7 +183,21 @@ function getAllCharactersCreatedAfterYear() {}
    }
  */
 
-function getCharactersInMovie() {}
+function getCharactersInMovie(characters,title) {
+let obj = {}
+// let title = characters.films
+for (let i = 0; i < characters.length; i++){
+  let title = characters[i].films
+  // console.log(title)
+  for( let j = 0; j < characters[i].films.length; j++){
+    if (characters[i].films[j].includes(title) ){
+      obj[characters[i].id] = characters[i].name
+      console.log(obj)
+    }
+  }
+}
+return obj;
+}
 
 //UNCOMMENT THE LINE BELOW TO TEST YOUR SOLUTION
-// console.log(getCharactersInMovie(characters, 'return of the jedi'));
+console.log(getCharactersInMovie(characters, 'return of the jedi'));

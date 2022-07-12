@@ -266,7 +266,7 @@ const results = [
     mass: '77',
     hair_color: 'auburn, white',
     skin_color: 'fair',
-    eye_color: 'blue-gray',
+    eye_color: `blue-gray`,
     birth_year: '57BBY',
     gender: 'male',
     homeworld: {
