@@ -185,14 +185,15 @@ function getAllCharactersCreatedAfterYear(characters, date) {
 
 function getCharactersInMovie(characters,title) {
 let obj = {}
-// let title = characters.films
+let movie;
 for (let i = 0; i < characters.length; i++){
-  let title = characters[i].films
-  // console.log(title)
+  let movie = characters[i].films
+  // console.log(movie)
   for( let j = 0; j < characters[i].films.length; j++){
-    if (characters[i].films[j].includes(title) ){
+    let lowerCase = characters[i].films[j].toLowerCase()
+    if (lowerCase === title.toLowerCase()){
       obj[characters[i].id] = characters[i].name
-      console.log(obj)
+      // console.log(obj)
     }
   }
 }
